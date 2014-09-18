@@ -1,0 +1,16 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>de.nierbeck.apachecon</groupId>
+  <artifactId>karaf-enterprise-sample</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>Karaf Enterprise Sample </name>
+  <description>The Reactor POM for the Karaf Enterprise Sample, showed at the ApacheCon EU 2014</description>
+  <modules>
+  	<module>enterprise-sample-parent</module>
+  	<module>sample-persistence</module>
+  	<module>sample-command</module>
+  	<module>sample-view</module>
+  	<module>enterprise-sample-feature</module>
+  </modules>
+</project>

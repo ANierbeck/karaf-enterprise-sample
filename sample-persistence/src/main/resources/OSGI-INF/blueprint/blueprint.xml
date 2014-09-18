@@ -1,0 +1,21 @@
+<blueprint default-activation="eager"
+	xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jpa="http://aries.apache.org/xmlns/jpa/v1.0.0" xmlns:tx="http://aries.apache.org/xmlns/transactions/v1.0.0"
+    xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0
+           http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+           http://camel.apache.org/schema/blueprint/camel-blueprint.xsd
+           http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0
+           http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0/blueprint-cm-1.0.0.xsd
+           http://cxf.apache.org/blueprint/jaxws http://cxf.apache.org/schemas/blueprint/jaxws.xsd
+           http://cxf.apache.org/blueprint/core http://cxf.apache.org/schemas/blueprint/core.xsd">
+
+	<bean id="cookBookServiceImpl"
+		class="de.nierbeck.apachecon.persistence.dao.CookBookServiceImpl">
+		<jpa:context property="em" unitname="inventory" />
+		<tx:transaction method="*" value="Required" />
+	</bean>
+
+	<service id="cookBookService" ref="cookBookServiceImpl"
+		interface="de.nierbeck.apachecon.persistence.api.CookBookService" />
+
+</blueprint>
