@@ -1,11 +1,9 @@
 package de.nierbeck.apachecon.persistence.entity;
 
-import java.util.List;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 
 @Entity
 public class Recipe {
@@ -14,8 +12,10 @@ public class Recipe {
 	@GeneratedValue
 	private Long id;
 
-	@ManyToMany
-	private List<Ingredient> ingredients;
+	private String name;
+
+	@Column(columnDefinition = "TEXT")
+	private String ingredients;
 
 	public Long getId() {
 		return id;
@@ -25,16 +25,20 @@ public class Recipe {
 		this.id = id;
 	}
 
-	public List<Ingredient> getIngredients() {
+	public String getIngredients() {
 		return ingredients;
 	}
 
-	public void setIngredients(List<Ingredient> ingredients) {
+	public void setIngredients(String ingredients) {
 		this.ingredients = ingredients;
 	}
 
-	public void addIngedient(Ingredient ingredient) {
-		this.ingredients.add(ingredient);
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	@Override

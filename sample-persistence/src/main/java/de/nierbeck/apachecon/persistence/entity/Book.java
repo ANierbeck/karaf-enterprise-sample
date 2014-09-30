@@ -1,8 +1,11 @@
 package de.nierbeck.apachecon.persistence.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -18,8 +21,8 @@ public class Book {
 
 	private String isbn;
 
-	@ManyToMany
-	private List<Recipe> recipes;
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<Recipe> recipes = new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -46,6 +49,9 @@ public class Book {
 	}
 
 	public List<Recipe> getRecipes() {
+		if (recipes == null) {
+			recipes = new ArrayList();
+		}
 		return recipes;
 	}
 

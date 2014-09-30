@@ -11,5 +11,23 @@
 				<property name="bookService" ref="cookBookService" />
 			</action>
 		</command>
+		
+		<command>
+			<action class="de.nierbeck.apachecon.commands.AddRecipe">
+				<property name="bookService" ref="cookBookService" />
+			</action>
+		</command>
+		
+		<command>
+			<action class="de.nierbeck.apachecon.commands.ListBooks">
+				<property name="bookService" ref="cookBookService" />
+			</action>
+		</command>
+		
+		<command>
+			<action class="de.nierbeck.apachecon.commands.ListRecipes">
+				<property name="bookService" ref="cookBookService" />
+			</action>
+		</command>
 	</command-bundle>
 </blueprint>

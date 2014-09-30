@@ -8,7 +8,7 @@
 	</parent>
 	<artifactId>enterprise-sample-parent</artifactId>
 	<packaging>pom</packaging>
-	<name>Enterprise Sample Parent</name>
+	<name>Enterprise Sample : Parent</name>
 	<description>Parent project for the Enterprise Sample Project</description>
 
 	<properties>

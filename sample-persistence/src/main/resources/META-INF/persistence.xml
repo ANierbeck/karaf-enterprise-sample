@@ -21,12 +21,11 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
         http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
     version="2.0" >
-    <persistence-unit name="cookbook" transaction-type="JTA">
+    <persistence-unit name="cookbookPU" transaction-type="JTA">
     	<provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
         <jta-data-source>osgi:service/javax.sql.DataSource/(osgi.jndi.service.name=jdbc/cookbook)</jta-data-source>
     
         <class>de.nierbeck.apachecon.persistence.entity.Book</class>
-		<class>de.nierbeck.apachecon.persistence.entity.Ingredient</class>
 		<class>de.nierbeck.apachecon.persistence.entity.Recipe</class>
         
         <exclude-unlisted-classes>true</exclude-unlisted-classes>

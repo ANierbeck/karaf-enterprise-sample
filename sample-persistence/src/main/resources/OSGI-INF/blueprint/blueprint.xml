@@ -11,11 +11,13 @@
 
 	<bean id="cookBookServiceImpl"
 		class="de.nierbeck.apachecon.persistence.dao.CookBookServiceImpl">
-		<jpa:context property="em" unitname="inventory" />
+		<jpa:context property="em" unitname="cookbookPU" />
 		<tx:transaction method="*" value="Required" />
 	</bean>
 
 	<service id="cookBookService" ref="cookBookServiceImpl"
 		interface="de.nierbeck.apachecon.persistence.api.CookBookService" />
+		
+		
 
 </blueprint>
