@@ -1,5 +1,6 @@
 package de.nierbeck.apachecon.persistence.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,12 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Book {
+public class Book implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue
@@ -50,7 +56,7 @@ public class Book {
 
 	public List<Recipe> getRecipes() {
 		if (recipes == null) {
-			recipes = new ArrayList();
+			recipes = new ArrayList<Recipe>();
 		}
 		return recipes;
 	}

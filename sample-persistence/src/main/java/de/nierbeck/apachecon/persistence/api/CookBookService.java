@@ -17,6 +17,8 @@ public interface CookBookService {
 
 	List<Book> getAllBooks();
 
+	List<Book> getAllBooksDetached();
+
 	Book getBookById(Long id);
 
 }

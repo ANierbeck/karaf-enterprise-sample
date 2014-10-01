@@ -3,6 +3,7 @@ package de.nierbeck.apachecon.persistence.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import de.nierbeck.apachecon.persistence.api.CookBookService;
@@ -21,9 +22,9 @@ public class CookBookServiceImpl implements CookBookService {
 		this.em = em;
 	}
 
-
 	public Book getBookByName(String name) {
-		TypedQuery<Book> createQuery = em.createQuery("SELECT book FROM Book book where book.name=:name", Book.class);
+		TypedQuery<Book> createQuery = em.createQuery(
+				"SELECT book FROM Book book where book.name=:name", Book.class);
 		createQuery.setParameter("name", name);
 
 		return createQuery.getSingleResult();
@@ -43,7 +44,14 @@ public class CookBookServiceImpl implements CookBookService {
 				"SELECT book FROM Book book WHERE book.id = :id", Book.class);
 		query.setParameter("id", id);
 
-		return query.getSingleResult();
+		Book book = null;
+		try {
+			book = query.getSingleResult();
+		} catch (NoResultException nre) {
+			// NOOP
+		}
+
+		return book;
 	}
 
 	public void addRecipeToCookBook(Book book, Recipe recipe) {
@@ -59,9 +67,16 @@ public class CookBookServiceImpl implements CookBookService {
 
 	public List<Book> getAllBooks() {
 		TypedQuery<Book> createQuery = em.createQuery(
-				"SELECT book FROM Book book ORDER BY book.name",
-				Book.class);
+				"SELECT book FROM Book book ORDER BY book.name", Book.class);
 		return createQuery.getResultList();
+	}
+
+	public List<Book> getAllBooksDetached() {
+		List<Book> allBooks = getAllBooks();
+		for (Book book : allBooks) {
+			em.detach(book);
+		}
+		return allBooks;
 	}
 
 }

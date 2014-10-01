@@ -12,6 +12,51 @@
 	<name>Enterprise Sample : WebView</name>
 	<description>This module contains the web view</description>
 
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.geronimo.specs</groupId>
+			<artifactId>geronimo-jcdi_1.0_spec</artifactId>
+			<version>1.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.geronimo.specs</groupId>
+			<artifactId>geronimo-atinject_1.0_spec</artifactId>
+			<version>1.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.geronimo.specs</groupId>
+			<artifactId>geronimo-annotation_1.1_spec</artifactId>
+			<version>1.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.geronimo.specs</groupId>
+			<artifactId>geronimo-servlet_3.0_spec</artifactId>
+			<version>1.0</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+            <groupId>org.ops4j.pax.cdi</groupId>
+            <artifactId>pax-cdi-api</artifactId>
+            <version>0.8.0</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+        	<groupId>${project.groupId}</groupId>
+        	<artifactId>sample-persistence</artifactId>
+        	<version>${project.version}</version>
+        	<scope>provided</scope>
+        </dependency>
+
+	</dependencies>
+
 	<build>
 		<plugins>
 
@@ -22,7 +67,28 @@
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
+						<_wab>src/main/webapp/</_wab>
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+						<Bundle-Version>${project.version}</Bundle-Version>
+						<Web-ContextPath>apachecon</Web-ContextPath>
+						<Pax-ManagedBeans>WEB-INF/beans.xml</Pax-ManagedBeans>
+						<Import-Package>
+							javax.servlet.jsp,
+							javax.servlet.jsp.jstl.core,
+							javax.servlet.jsp.jstl.fmt,
+							javax.servlet.jsp.jstl.tlv,
+							org.apache.taglibs.standard.resources;version="1.1.2",
+							org.apache.taglibs.standard.tag.common.core;version="1.1.2",
+							org.apache.taglibs.standard.tag.rt.core;version="1.1.2",
+							org.apache.taglibs.standard.tei;version="1.1.2",
+							org.apache.taglibs.standard.tlv;version="1.1.2",
+							*
+						</Import-Package>
+						<Export-Package>!*</Export-Package>
+						<Require-Capability>
+							org.ops4j.pax.cdi.extension,
+							osgi.extender; filter:="(osgi.extender=pax.cdi)"
+						</Require-Capability>
 					</instructions>
 				</configuration>
 			</plugin>

@@ -1,0 +1,26 @@
+<features name="Enterprise-Sample" xmlns="http://karaf.apache.org/xmlns/features/v1.2.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.0.0 http://karaf.apache.org/xmlns/features/v1.2.0">
+
+    <repository>mvn:org.apache.cxf.karaf/apache-cxf/${dependency.cxf.version}/xml/features</repository>
+
+    <feature name='enterprise-sample' version="${project.version}" resolver="(obr)">
+
+        <!-- Container dependencies -->
+        <feature>transaction</feature>
+        <feature version="1.0.1">jpa</feature>
+        <feature>jndi</feature>
+		<feature>war</feature>
+		<feature version="2.2.2">openjpa</feature>
+		<feature>pax-cdi-web-openwebbeans</feature>
+
+        <!-- depending cxf features -->
+<!--         <feature version="${dependency.cxf.version}">cxf-jaxrs</feature> -->
+
+        <bundle dependency="true">mvn:com.h2database/h2/${dependency.h2.version}</bundle>
+        
+        <bundle>mvn:${project.groupId}/sample-command/${project.version}</bundle>
+        <bundle>mvn:${project.groupId}/sample-persistence/${project.version}</bundle>
+        <bundle>mvn:${project.groupId}/sample-view/${project.version}</bundle>
+    </feature>
+</features>
