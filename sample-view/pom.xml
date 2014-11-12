@@ -40,26 +40,36 @@
 			<version>1.0</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<dependency>
-            <groupId>org.ops4j.pax.cdi</groupId>
-            <artifactId>pax-cdi-api</artifactId>
-            <version>0.8.0</version>
-            <scope>provided</scope>
-        </dependency>
-        
-        <dependency>
-        	<groupId>${project.groupId}</groupId>
-        	<artifactId>sample-persistence</artifactId>
-        	<version>${project.version}</version>
-        	<scope>provided</scope>
-        </dependency>
+			<groupId>org.ops4j.pax.cdi</groupId>
+			<artifactId>pax-cdi-api</artifactId>
+			<version>0.8.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>sample-persistence</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
 
 	</dependencies>
 
 	<build>
 		<plugins>
-
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<excludes>
+						<exclude>**/internal/*Activator.java</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
@@ -82,12 +92,14 @@
 							org.apache.taglibs.standard.tag.rt.core;version="1.1.2",
 							org.apache.taglibs.standard.tei;version="1.1.2",
 							org.apache.taglibs.standard.tlv;version="1.1.2",
+							com.hazelcast.web,
 							*
 						</Import-Package>
 						<Export-Package>!*</Export-Package>
 						<Require-Capability>
 							org.ops4j.pax.cdi.extension,
-							osgi.extender; filter:="(osgi.extender=pax.cdi)"
+							osgi.extender;
+							filter:="(osgi.extender=pax.cdi)"
 						</Require-Capability>
 					</instructions>
 				</configuration>

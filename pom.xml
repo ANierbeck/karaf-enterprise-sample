@@ -13,6 +13,7 @@
 		<module>sample-command</module>
 		<module>sample-view</module>
 		<module>enterprise-sample-feature</module>
+		<module>datasource-cookbook</module>
 	</modules>
 	<build>
 		<plugins>

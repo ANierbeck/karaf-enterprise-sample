@@ -28,6 +28,12 @@ public class ViewRecipesServlet extends HttpServlet {
 	CookBookService cookBookService;
 
 	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		service(req, resp);
+	}
+
+	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		service(req, resp);
@@ -38,13 +44,29 @@ public class ViewRecipesServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
 
-		Book book = cookBookService.getBookById(Long.parseLong(id));
+		if (id != null) {
+			request.getSession().setAttribute("selectedBookID", id);
+		} else {
+			id = (String) request.getSession().getAttribute("selectedBookID");
+		}
 
 		ViewModel viewModel = new ViewModel();
-		viewModel.setRecipes(book.getRecipes());
-
 		RequestDispatcher disp;
-		disp = getServletContext().getRequestDispatcher("/jsp/listrecipes.jsp");
+		if (id != null) {
+			Book book = cookBookService.getBookById(Long.parseLong(id));
+
+			viewModel.setRecipes(book.getRecipes());
+			disp = getServletContext().getRequestDispatcher(
+					"/jsp/listrecipes.jsp");
+
+		} else {
+			disp = getServletContext().getRequestDispatcher(
+					"/jsp/listbooks.jsp");
+
+			for (Book book : cookBookService.getAllBooks())
+				viewModel.addBook(book);
+
+		}
 		request.setAttribute("app.viewModel", viewModel);
 		disp.forward(request, response);
 	}

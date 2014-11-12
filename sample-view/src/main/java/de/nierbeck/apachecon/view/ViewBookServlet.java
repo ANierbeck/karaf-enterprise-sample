@@ -25,10 +25,16 @@ public class ViewBookServlet extends HttpServlet {
 
 	@Inject
 	@OsgiService
-	CookBookService cookBookService;
+	private CookBookService cookBookService;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		service(req, resp);
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		service(req, resp);
 	}
@@ -44,5 +50,9 @@ public class ViewBookServlet extends HttpServlet {
 		disp = getServletContext().getRequestDispatcher("/jsp/listbooks.jsp");
 		request.setAttribute("app.viewModel", viewModel);
 		disp.forward(request, response);
+	}
+
+	public void setCookBookService(CookBookService cookBookService) {
+		this.cookBookService = cookBookService;
 	}
 }

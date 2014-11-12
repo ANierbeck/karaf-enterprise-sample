@@ -7,7 +7,7 @@
 <%	
 	ViewModel viewModel = (ViewModel) request.getAttribute("app.viewModel");
  %>
- <form action="<%=request.getContextPath() %>/recipes">
+ <form method=POST action="<%=request.getContextPath() %>/recipes">
 <TABLE>
 <tr>
 <TD WIDTH=75% ALIGN="TOP">

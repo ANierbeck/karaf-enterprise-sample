@@ -3,6 +3,7 @@
     xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.0.0 http://karaf.apache.org/xmlns/features/v1.2.0">
 
     <repository>mvn:org.apache.cxf.karaf/apache-cxf/${dependency.cxf.version}/xml/features</repository>
+    <repository>mvn:org.apache.karaf.cellar/apache-karaf-cellar/LATEST/xml/features</repository>
 
     <feature name='enterprise-sample' version="${project.version}" resolver="(obr)">
 
@@ -13,14 +14,16 @@
 		<feature>war</feature>
 		<feature version="2.2.2">openjpa</feature>
 		<feature>pax-cdi-web-openwebbeans</feature>
+		<feature>cellar</feature>
 
-        <!-- depending cxf features -->
-<!--         <feature version="${dependency.cxf.version}">cxf-jaxrs</feature> -->
-
-        <bundle dependency="true">mvn:com.h2database/h2/${dependency.h2.version}</bundle>
+        <bundle dependency="true">mvn:org.apache.derby/derbyclient/${dependency.derby.version}</bundle>
         
         <bundle>mvn:${project.groupId}/sample-command/${project.version}</bundle>
         <bundle>mvn:${project.groupId}/sample-persistence/${project.version}</bundle>
         <bundle>mvn:${project.groupId}/sample-view/${project.version}</bundle>
+        <bundle>mvn:${project.groupId}/datasource-cookbook/${project.version}</bundle>
+        
+        <!-- session replication bundle -->
+        <bundle>mvn:com.hazelcast/hazelcast-wm/3.2.3</bundle>
     </feature>
 </features>

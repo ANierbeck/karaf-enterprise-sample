@@ -46,7 +46,7 @@
 		<dependency.junit.version>4.11</dependency.junit.version>
 
 		<dependency.plexusUtilsPluginsVersion>3.0.7</dependency.plexusUtilsPluginsVersion>
-		<dependency.h2.version>1.3.167</dependency.h2.version>
+		<dependency.derby.version>10.11.1.1</dependency.derby.version>
 		<dependency.osgi.version>4.3.1</dependency.osgi.version>
 
 		<!-- pax-exam dependencies -->
@@ -112,10 +112,9 @@
 
 			<!-- Test database H2 -->
 			<dependency>
-				<groupId>com.h2database</groupId>
-				<artifactId>h2</artifactId>
-				<version>${dependency.h2.version}</version>
-				<scope>test</scope>
+			    <groupId>org.apache.derby</groupId>
+			    <artifactId>derbyclient</artifactId>
+			    <version>${dependency.derby.version}</version>
 			</dependency>
 
 			<!-- DBCP -->

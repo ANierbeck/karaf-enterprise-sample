@@ -49,6 +49,13 @@
 			<groupId>org.apache.servicemix.bundles</groupId>
 			<artifactId>org.apache.servicemix.bundles.asm</artifactId>
 		</dependency>
+		
+<!-- 		<dependency> -->
+<!-- 		    <groupId>org.apache.derby</groupId> -->
+<!-- 		    <artifactId>derbyclient</artifactId> -->
+<!-- 		    <version>10.11.1.1</version> -->
+<!-- 		    <scope>provided</scope> -->
+<!-- 		</dependency> -->
 	</dependencies>
 
 	<build>
@@ -60,6 +67,9 @@
 					<addDefaultConstructor>true</addDefaultConstructor>
 					<includes>**/*.class</includes>
 					<enforcePropertyRestriction>true</enforcePropertyRestriction>
+					<persistenceXmlFile>${basedir}/src/main/resources/META-INF/persistence.xml</persistenceXmlFile>
+			        <sqlFile>${basedir}/src/main/resources/database.sql</sqlFile>
+			        <connectionDriverName>org.apache.derby.jdbc.ClientDriver</connectionDriverName>
 				</configuration>
 				<executions>
 					<execution>
@@ -69,6 +79,13 @@
 							<goal>enhance</goal>
 						</goals>
 					</execution>
+					<execution>
+			            <id>sql</id>
+			            <phase>prepare-package</phase>
+			            <goals>
+			                <goal>sql</goal>
+			            </goals>
+			        </execution>     
 				</executions>
 				<dependencies>
 					<dependency>
@@ -82,9 +99,9 @@
 						<version>${dependency.slf4j.version}</version>
 					</dependency>
 					<dependency>
-						<groupId>com.h2database</groupId>
-						<artifactId>h2</artifactId>
-						<version>${dependency.h2.version}</version>
+					    <groupId>org.apache.derby</groupId>
+					    <artifactId>derbyclient</artifactId>
+					    <version>10.11.1.1</version>
 					</dependency>
 				</dependencies>
 			</plugin>
