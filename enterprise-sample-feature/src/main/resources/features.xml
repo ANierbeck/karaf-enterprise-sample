@@ -8,6 +8,7 @@
     <feature name='enterprise-sample' version="${project.version}" resolver="(obr)">
 
         <!-- Container dependencies -->
+        <feature>jdbc</feature>
         <feature>transaction</feature>
         <feature version="1.0.1">jpa</feature>
         <feature>jndi</feature>
